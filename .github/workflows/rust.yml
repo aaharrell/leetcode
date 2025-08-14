@@ -11,12 +11,14 @@ env:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
+    defaults:
+      run:
+        working-directory: leetcode/9_palindrome-number/solution-rust   # <— path to the folder with Cargo.toml
     steps:
-    - uses: actions/checkout@v4
-    - name: Build
-      run: cargo build --verbose
-    - name: Run tests
-      run: cargo test --verbose
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable  # optional, but nice
+      - name: Build
+        run: cargo build --verbose
+      - name: Test
+        run: cargo test --verbose
